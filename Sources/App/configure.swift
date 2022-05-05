@@ -16,11 +16,14 @@ public func configure(_ app: Application) throws {
         database: Environment.get("DATABASE_NAME") ?? "vapor_database"
     ), as: .psql)
 
-    app.migrations.add(CreateTodo())
-
     app.views.use(.leaf)
 
-    
+    // Migrations
+//    app.migrations.add(CreateCommentDishPivot())
+    app.migrations.add(CreateComments())
+    app.migrations.add(CreateDishes())
+    app.migrations.add(CreateUsers())
+    try app.autoMigrate().wait()
 
     // register routes
     try routes(app)

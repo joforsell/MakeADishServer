@@ -9,6 +9,14 @@ func routes(_ app: Application) throws {
     app.get("hello") { req -> String in
         return "Hello, world!"
     }
-
-    try app.register(collection: TodoController())
+    
+    app.post("user", "add") { req -> HTTPStatus in
+        let user = try req.content.decode(User.self)
+        try await user.save(on: req.db)
+        return .created
+    }
+    
+    try app.register(collection: DishesController())
+    
+    try app.register(collection: CommentsController())
 }
