@@ -13,7 +13,7 @@ struct CreateDishes: AsyncMigration {
             .id()
             .field(.title, .string, .required)
             .field(.desc, .string, .required)
-            .field(.videoUrlString, .string, .required)
+            .field(.videoId, .string, .required)
             .field(.ingredients, .array(of: .string))
             .field(.tags, .array(of: .string))
             .field(.ratings, .array(of: .int))

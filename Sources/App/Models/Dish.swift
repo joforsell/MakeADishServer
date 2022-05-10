@@ -20,8 +20,8 @@ final class Dish: Model, Content {
     @Field(key: .desc)
     var description: String
     
-    @Field(key: .videoUrlString)
-    var videoUrlString: String
+    @Field(key: .videoId)
+    var videoId: String
     
     @Children(for: \.$dish)
     var comments: [Comment]
@@ -37,11 +37,11 @@ final class Dish: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, title: String, description: String, videoUrlString: String, ingredients: [String], tags: [String], ratings: [Int]) {
+    init(id: UUID? = nil, title: String, description: String, videoId: String, ingredients: [String], tags: [String], ratings: [Int]) {
         self.id = id
         self.title = title
         self.description = description
-        self.videoUrlString = videoUrlString
+        self.videoId = videoId
         self.ingredients = ingredients
         self.tags = tags
         self.ratings = ratings
@@ -53,7 +53,7 @@ final class Dish: Model, Content {
 extension FieldKey {
     static let title: FieldKey = "title"
     static let desc: FieldKey = "description"
-    static let videoUrlString: FieldKey = "video_url_string"
+    static let videoId: FieldKey = "video_id"
     static let ingredients: FieldKey = "ingredients"
     static let tags: FieldKey = "tags"
     static let ratings: FieldKey = "ratings"

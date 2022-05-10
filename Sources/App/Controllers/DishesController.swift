@@ -22,7 +22,7 @@ struct DishesController: RouteCollection {
     
     func addDishHandler(_ req: Request) async throws -> Dish {
         let data = try req.content.decode(CreateDishData.self)
-        let dish = Dish(title: data.title, description: data.description, videoUrlString: data.videoUrlString, ingredients: data.ingredients ?? [], tags: data.tags ?? [], ratings: data.ratings ?? [])
+        let dish = Dish(title: data.title, description: data.description, videoId: data.videoId, ingredients: data.ingredients ?? [], tags: data.tags ?? [], ratings: data.ratings ?? [])
         try await dish.save(on: req.db)
         return dish
     }
@@ -37,7 +37,7 @@ struct DishesController: RouteCollection {
 struct CreateDishData: Content {
     let title: String
     let description: String
-    let videoUrlString: String
+    let videoId: String
     let ingredients: [String]?
     let tags: [String]?
     let ratings: [Int]?
