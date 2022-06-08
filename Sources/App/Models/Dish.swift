@@ -48,7 +48,7 @@ final class Dish: Model, Content {
     }
 }
 
-// MARK: -- Dish model field keys
+// MARK: - Dish model field keys
 
 extension FieldKey {
     static let title: FieldKey = "title"
