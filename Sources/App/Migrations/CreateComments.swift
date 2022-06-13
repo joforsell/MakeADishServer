@@ -9,16 +9,17 @@ import Fluent
 
 struct CreateComments: AsyncMigration {
     func prepare(on database: Database) async throws {
-        try await database.schema(DBSchemas.comments)
+        try await database.schema(Comment.schema)
             .id()
             .field(.text, .string, .required)
-            .field(.dish, .uuid, .required)
+            .field(.dish, .uuid, .references(Dish.schema, "id"))
+            .field(.user, .uuid, .references(User.schema, "id"))
             .field(.timePosted, .datetime, .required)
             .field(.lastEdited, .datetime, .required)
             .create()
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema(DBSchemas.comments).delete()
+        try await database.schema(Comment.schema).delete()
     }
 }

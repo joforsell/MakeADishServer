@@ -16,10 +16,16 @@ final class Comment: Model, Content {
     
     @Field(key: .text)
     var text: String
+    
     @Parent(key: .dish)
     var dish: Dish
+    
+    @Parent(key: .user)
+    var user: User
+    
     @Field(key: .timePosted)
     var timePosted: Date
+    
     @Field(key: .lastEdited)
     var lastEdited: Date
     
@@ -39,6 +45,7 @@ final class Comment: Model, Content {
 extension FieldKey {
     static let text: FieldKey = "text"
     static let dish: FieldKey = "dish"
+    static let user: FieldKey = "user"
     static let timePosted: FieldKey = "time_posted"
     static let lastEdited: FieldKey = "last_edited"
 }

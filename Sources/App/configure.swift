@@ -3,7 +3,7 @@ import FluentPostgresDriver
 import Leaf
 import Vapor
 
-// configures your application
+// Configures your application
 public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
@@ -19,12 +19,11 @@ public func configure(_ app: Application) throws {
     app.views.use(.leaf)
 
     // Migrations
-//    app.migrations.add(CreateCommentDishPivot())
     app.migrations.add(CreateComments())
     app.migrations.add(CreateDishes())
     app.migrations.add(CreateUsers())
     try app.autoMigrate().wait()
 
-    // register routes
+    // Register routes
     try routes(app)
 }

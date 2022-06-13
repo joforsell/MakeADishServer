@@ -17,6 +17,9 @@ final class User: Model, Content {
     @Field(key: .username)
     var username: String
     
+    @Children(for: \.$user)
+    var comments: [Comment]
+    
     init() {}
     
     init(id: UUID? = nil, username: String) {
